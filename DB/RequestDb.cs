@@ -1,8 +1,8 @@
 ﻿using Models.lib;
 using System.Data.Common;
+using MySql.Data.MySqlClient;
 
 namespace DB;
-
 public class RequestDb
 {
     public List<User> _users;
@@ -31,7 +31,7 @@ public class RequestDb
     //ДОБАВЛЕНИЕ, УДАЛЕНИЕ, ИЗМЕНЕНИЕ
     public async Task RequestExecuteNonQueryAsync(string comand)
     {
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
 
         await _connectDb.ConnectionOpenAsynk();
         await _connectDb.GetCmd().ExecuteNonQueryAsync();
@@ -39,13 +39,11 @@ public class RequestDb
     }
 
     //заполняем таблицу вопросов с картинкой
-    /*public async Task SetQuestionAsync(string path, string name, int number)
+    public async Task SetQuestionAsync(string path, string name, int number)
     {
-
         string comand = "INSERT INTO tab_Questions VALUES (@Name, @Image, @Number)";
-
-
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        
+        var _connectDb = new ConnectionDb(comand);
 
         _connectDb.GetCmd().Parameters.Add("@Name", MySqlDbType.VarChar, 500);
         _connectDb.GetCmd().Parameters.Add("@Number", MySqlDbType.Int32);
@@ -53,7 +51,7 @@ public class RequestDb
         
         // массив для хранения бинарных данных файла
         byte[] image;
-        using (FileStream fs = new FileStream(path, FileMode.Open))
+        using (var fs = new FileStream(path, FileMode.Open))
         {
             image = new byte[fs.Length];
             fs.Read(image, 0, image.Length);
@@ -67,14 +65,14 @@ public class RequestDb
 
         await _connectDb.GetCmd().ExecuteNonQueryAsync();
         await _connectDb.ConnectionCloseAsync();
-    }*/
+    }
 
     //ПОЛУЧЕНИЕ ДАННЫХ
 
     //gлучение данных пользователь
     public async Task GetUserAsync(string comand)
     {
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
 
         await _connectDb.ConnectionOpenAsynk();
         using (DbDataReader reader = await _connectDb.GetCmd().ExecuteReaderAsync())
@@ -102,7 +100,7 @@ public class RequestDb
     //проверка логина и пароля
     public async Task<string?> QueryAuthorizationAsync(string comand, string login, string password)
     {
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
         var _message = "Неверный логин или пароль !!!";
 
         await _connectDb.ConnectionOpenAsynk();
@@ -133,7 +131,7 @@ public class RequestDb
     private async Task<string?> GetRoleAsync(int id)
     {
         string _comand = $"Select name from tab_Roles Where id = {id}";
-        ConnectionDb _connectDb = new ConnectionDb(_comand);
+        var _connectDb = new ConnectionDb(_comand);
 
         await _connectDb.ConnectionOpenAsynk();
         using (DbDataReader reader = await _connectDb.GetCmd().ExecuteReaderAsync())
@@ -152,7 +150,7 @@ public class RequestDb
     public async Task GetGroupAsync()
     {
         var comand = "SELECT * FROM tab_Groups";
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
 
         await _connectDb.ConnectionOpenAsynk();
         using (DbDataReader reader = await _connectDb.GetCmd().ExecuteReaderAsync())
@@ -177,7 +175,7 @@ public class RequestDb
     public async Task GetQuestionAsync()
     {
         var comand = $"SELECT * FROM tab_Questions";
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
 
         await _connectDb.ConnectionOpenAsynk();
         using (DbDataReader reader = await _connectDb.GetCmd().ExecuteReaderAsync())
@@ -216,7 +214,7 @@ public class RequestDb
     public async Task GetAnsverAsync()
     {
         var comand = "SELECT * FROM tab_Ansvers";
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
 
         await _connectDb.ConnectionOpenAsynk();
         using (DbDataReader reader = await _connectDb.GetCmd().ExecuteReaderAsync())
@@ -242,7 +240,7 @@ public class RequestDb
     public async Task GetSubjectAsync()
     {
         var comand = "SELECT * FROM tab_Subjects";
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
 
         await _connectDb.ConnectionOpenAsynk();
         using (DbDataReader reader = await _connectDb.GetCmd().ExecuteReaderAsync())
@@ -268,7 +266,7 @@ public class RequestDb
     public async Task GetTestAsync()
     {
         var comand = "SELECT * FROM tab_Tests";
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
 
         await _connectDb.ConnectionOpenAsynk();
         using (DbDataReader reader = await _connectDb.GetCmd().ExecuteReaderAsync())
@@ -296,7 +294,7 @@ public class RequestDb
     public async Task GetResultAsync()
     {
         var comand = "SELECT * FROM tab_Results";
-        ConnectionDb _connectDb = new ConnectionDb(comand);
+        var _connectDb = new ConnectionDb(comand);
 
         await _connectDb.ConnectionOpenAsynk();
         using (DbDataReader reader = await _connectDb.GetCmd().ExecuteReaderAsync())

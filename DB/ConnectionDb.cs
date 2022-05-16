@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
 namespace DB;
-
 public class ConnectionDb
 {
     private MySqlConnection _connection;
@@ -10,7 +9,7 @@ public class ConnectionDb
     public ConnectionDb(string comand)
     {
         _connection = new MySqlConnection(GetConnectionString());
-        _cmd = new MySqlCommand {Connection = _connection};
+        _cmd = new MySqlCommand(comand, _connection);
     }
 
     private static string GetConnectionString()

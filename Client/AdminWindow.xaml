@@ -1,0 +1,158 @@
+﻿<Window x:Class="Client.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+        Title="Редактор тестов" Height="800" Width="1000" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" Background="LightGray"
+        BorderThickness="1" BorderBrush="BlueViolet" FontFamily="Calibri" FontWeight="Bold">
+
+    <Window.Resources>
+        <ResourceDictionary Source="Styles.xaml"/>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="MenuTop" Row="0" ColumnSpan="2" Height="70"
+              MouseDown="MenuTop_DragAndDrop" >
+            <Border BorderThickness="0 0 0 1" BorderBrush="BlueViolet"/>
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <StackPanel Width="900">
+                    <Label Margin="0" Content="ДОБРО ПОЖАЛОВАТЬ В РЕДАКТОР ТЕСТОВ" 
+                       FontSize="20" Foreground="Indigo" Padding="0 20 0 0" 
+                       HorizontalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="100">
+                    <Image Height="25" Width="25" Margin="30 0 0 0"
+                       Source="Icon/windowminimize_.png" MouseLeftButtonDown="Minimize_Window"/>
+                    <Image Height="25" Width="25" Margin="10 0 0 0"
+                       Source="Icon/windowclose_.png" MouseLeftButtonDown="Close_Window"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="MenuTest" Column="0" Row="1" RowSpan="4">
+            <Border BorderThickness="1 0" BorderBrush="BlueViolet" Margin="0,0,0,55">
+                
+                <StackPanel>
+                    <Label Margin="10" Content="Введите название нового теста:" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="TextBoxSubject" Background="White"
+                                 BorderBrush="BlueViolet" BorderThickness="0 1 0 1" Width="250" Height="50" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    <Label Margin="5" Content="Введите время прохождения теста (минут):" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="TextBoxTestTime" Background="White" 
+                                 BorderBrush="BlueViolet" BorderThickness="1" Width="100" Height="30" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Button x:Name="ButtonAddTest" Width="150" Margin="0 10" Content="Добавить тест"
+                            Background="Green" Click="ButtonAddTest_Click"/>
+                    <StackPanel VerticalAlignment="Top">
+                        <ListBox x:Name="ListTest" Height="390" BorderBrush="BlueViolet" BorderThickness="0 1" 
+                                 SelectionChanged="ListTest_OnSelectionChanged" Margin="0,0,0,50">
+
+                        </ListBox>
+                        <Button x:Name="ButtonDelTest" Width="150" HorizontalAlignment="Center" Content="Удалить тест"
+                            Background="Red"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid x:Name="EditorTest" Column="1" Row="1" Height="150">
+            <Border BorderThickness="0 0  0 1" BorderBrush="BlueViolet">
+                <StackPanel Orientation="Horizontal" Height="150" VerticalAlignment="Top">
+                    <StackPanel Width="500">
+                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Margin="5" Content="Укажите номер вопроса в тесте:" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="TextBoxQuestionNumber" Width="100" Background="White"
+                                 BorderThickness="1" BorderBrush="BlueViolet" HorizontalContentAlignment="Center"/>
+                        </StackPanel>
+                        <Label Margin="5" Height="43" VerticalContentAlignment="Bottom" Content="Напишите вопрос в следующем поле:"/>
+                        <TextBox x:Name="TextBoxQuestion" Width="500" Height="59" Background="White"
+                                 BorderThickness="0 1 1 0" BorderBrush="BlueViolet" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <Image x:Name="ImageQuestion" Source="https://ak.picdn.net/shutterstock/videos/1031243834/thumb/8.jpg"
+                           Width="250" Height="150" VerticalAlignment="Top" Stretch="Fill" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Column="1" Row="2" Height="130">
+            <StackPanel>
+                <Label Content="Баллы за ответ:" Margin="0 15 0 5" Width="500" 
+                       HorizontalAlignment="Left" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Ответ 1" Style="{StaticResource Style_LabelGrade}"/>
+                        <Label Content="Ответ 2" Style="{StaticResource Style_LabelGrade}"/>
+                        <Label Content="Ответ 3" Style="{StaticResource Style_LabelGrade}"/>
+                        <Label Content="Ответ 4" Style="{StaticResource Style_LabelGrade}"/>
+                        <Label Content="Ответ 5" Style="{StaticResource Style_LabelGrade}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Cursor="Arrow">
+                        <TextBox x:Name="TextBoXAnswerGrade1" Style="{StaticResource Style_TextBoXAnswerGrade}"/>
+                        
+                        <TextBox x:Name="TextBoXAnswerGrade2" Style="{StaticResource Style_TextBoXAnswerGrade}"/>
+                        
+                        <TextBox x:Name="TextBoXAnswerGrade3" Style="{StaticResource Style_TextBoXAnswerGrade}"/>
+
+                        <TextBox x:Name="TextBoXAnswerGrade4" Style="{StaticResource Style_TextBoXAnswerGrade}"/>
+
+                        <TextBox x:Name="TextBoXAnswerGrade5" Style="{StaticResource Style_TextBoXAnswerGrade}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0">
+                <Button x:Name="ButtonLoadImage" Content="Добавить изображение к вопросу"
+                        Margin="0" Width="250" Background="Transparent" Foreground="Black" VerticalAlignment="Top" Click="ButtonLoadImage_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Column="1" Row="3" Height="390">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="348*"/>
+                <ColumnDefinition Width="401*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="0 1 0 1" BorderBrush="BlueViolet" Grid.ColumnSpan="2">
+                <StackPanel HorizontalAlignment="Left" Width="750" Height="380" VerticalAlignment="Top">
+                    <Label Margin="0" HorizontalContentAlignment="Center" Content="Введите варианты ответов :" />
+                    <StackPanel>
+                        <TextBox x:Name="TextBoXAnswer1" Style="{StaticResource Style_TexBoxAnswer}">
+                            Ответ 1</TextBox>
+                        <TextBox x:Name="TextBoXAnswer2" Style="{StaticResource Style_TexBoxAnswer}">
+                            Ответ 2</TextBox>
+                        <TextBox x:Name="TextBoXAnswer3" Style="{StaticResource Style_TexBoxAnswer}">
+                            Ответ 3</TextBox>
+                        <TextBox x:Name="TextBoXAnswer4" Style="{StaticResource Style_TexBoxAnswer}">
+                            Ответ 4</TextBox>
+                        <TextBox x:Name="TextBoXAnswer5" Style="{StaticResource Style_TexBoxAnswer}">
+                            Ответ 5</TextBox>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Column="1" Row="4" Height="50">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="ButtonAddQuestionToTest" Width="740" Content="ДОБАВИТЬ ВОПРОС В ТЕСТ" Click="ButtonAddQuestionToTest_Click"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
