@@ -1,0 +1,38 @@
+﻿<Window x:Class="Client.StudentWindow3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="StudentWindow3" Height="800" Width="1200" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" Background="LightGray"
+        BorderThickness="1" BorderBrush="BlueViolet" FontFamily="Calibri" FontWeight="Bold">
+    
+    <Grid>
+        
+        <TextBlock x:Name="TextBlockTxt1" Text="Тестирование завершено" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" Width="600" Height="80" FontSize="50"/>
+
+        <TextBlock x:Name="TextBlockFIO" Text="Имя Отчество," HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Margin="0,171,0,0" Width="800" Height="80" FontSize="50"/>
+
+        <TextBlock x:Name="TextBlockTxt2" Text="Вы ответили верно на" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,278,0,0" Width="520" Height="80" FontSize="50"/>
+        <TextBlock x:Name="TextBlockRightAnswers" Text="___" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="572,278,0,0" Width="60" Height="80" FontSize="50"/>
+        <TextBlock x:Name="TextBlockTxt3" Text="из" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="639,278,0,0" Width="60" Height="80" FontSize="50"/>
+        <TextBlock x:Name="TextBlockQuestionsInCurrentTest" Text="___" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="704,278,0,0" Width="60" Height="80" FontSize="50"/>
+        <TextBlock x:Name="TextBlockTxt4" Text="вопросов (" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="771,278,0,0" Width="250" Height="80" FontSize="50"/>
+        <TextBlock x:Name="TextBlockEvaluationPercents" Text="___" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1027,278,0,0" Width="60" Height="80" FontSize="50"/>
+        <TextBlock x:Name="TextBlockTxt5" Text="%)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1094,278,0,0" Width="60" Height="80" FontSize="50"/>
+
+        <TextBlock x:Name="TextBlockTxt6" Text="Ваша оценка:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="267,420,0,0" Width="520" Height="120" FontSize="80"/>
+        <TextBlock x:Name="TextBlockEvaluation" Text="___" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="811,420,0,0" Width="110" Height="120" FontSize="80"/>
+
+
+        <Button x:Name="ButtonExit" Content="Выйти из программы" HorizontalAlignment="Left"
+                Width="400" Height="70" VerticalAlignment="Bottom" Margin="100 0 0 70" 
+                FontSize="30" FontWeight="Bold" Click="ButtonExit_Click"/>
+        
+        <Button x:Name="ButtonBackToSubjects" Content="Вернуться к списку тестов" HorizontalAlignment="Right"
+                Width="400" Height="70" VerticalAlignment="Bottom" Margin="0 0 100 70" 
+                FontSize="30" FontWeight="Bold" Click="ButtonBackToSubjects_Click"/>
+    </Grid>
+</Window>

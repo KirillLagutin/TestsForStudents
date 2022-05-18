@@ -5,12 +5,14 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using DB;
 using Microsoft.Win32;
+using Models.lib;
 
 namespace Client;
 public partial class AdminWindow : Window
 {
     string theme = ""; // в переменную сохраняется выбранная тема теста
     string imagePath = ""; // переменная путь к изображению 
+    
     public AdminWindow()
     {
         InitializeComponent();
@@ -61,17 +63,16 @@ public partial class AdminWindow : Window
             
             var db = new RequestDb();
             await db.GetSubjectAsync();
-            for (int i = 0; i < db._subjects.Count; i++)
+            foreach (var t in db._subjects.Where(t => t.Name == theme))
             {
-                if (db._subjects[i].Name == theme)
-                    subjectId = db._subjects[i].Id;
+                subjectId = t.Id;
             }
 
             
             if(imagePath == "")
             {
                 //без картинки
-                var comandAddQuestion = $"INSERT INTO tab_Questions(ask_question, question_number) VALUES(N'{TextBoxQuestion.Text}',{int.Parse(TextBoxQuestionNumber.Text)})";
+                var comandAddQuestion = $"INSERT INTO tab_Questions(ask_question, question_number) VALUES(N'{TextBoxQuestion.Text}', {int.Parse(TextBoxQuestionNumber.Text)})";
                 var requestDb = new RequestDb();
                 await requestDb.RequestExecuteNonQueryAsync(comandAddQuestion);
             }

@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
-        Title="Редактор тестов" Height="800" Width="1000" ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen" WindowStyle="None" Background="LightGray"
+        Title="Редактор тестов" Height="850" Width="1000" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" Background="LightGray"
         BorderThickness="1" BorderBrush="BlueViolet" FontFamily="Calibri" FontWeight="Bold">
+    <!--WindowStyle="None"-->
 
     <Window.Resources>
         <ResourceDictionary Source="Styles.xaml"/>
@@ -63,7 +64,8 @@
                             Background="Green" Click="ButtonAddTest_Click"/>
                     <StackPanel VerticalAlignment="Top">
                         <ListBox x:Name="ListTest" Height="390" BorderBrush="BlueViolet" BorderThickness="0 1" 
-                                 SelectionChanged="ListTest_OnSelectionChanged" Margin="0,0,0,50">
+                                 SelectionChanged="ListTest_OnSelectionChanged" Margin="0,0,0,50"
+                                 FontSize="20" FontWeight="Bold">
 
                         </ListBox>
                         <Button x:Name="ButtonDelTest" Width="150" HorizontalAlignment="Center" Content="Удалить тест"
